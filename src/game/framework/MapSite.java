@@ -1,6 +1,8 @@
-package game;
+package game.framework;
 
-public abstract class MapSite
+import game.GameScene;
+
+public abstract class MapSite extends GameScene
 {
 	/** Player p enters the location */
 	abstract void enter(Player p);
