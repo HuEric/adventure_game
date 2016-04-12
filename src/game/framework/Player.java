@@ -3,8 +3,6 @@ package game.framework;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
-import com.jme3.bullet.control.GhostControl;
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.collision.CollisionResults;
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
@@ -15,6 +13,7 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.scene.Node;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
@@ -37,9 +36,8 @@ public class Player extends GameObject
 	protected ArrayList<Object>	_items	= null;
 	// Player Movement Speed
 	protected float _speed = 1.5f;
-	
-	// Non-solid collision shape
-	protected GhostControl _sensor = null;
+	// Minimum action Distance
+	protected float _actionDistance = 2f;
 	
 	public Player()
 	{
@@ -48,6 +46,11 @@ public class Player extends GameObject
 		_items = new ArrayList<Object>();
 	}
 
+	public float getActionDistance()
+	{
+		return (_actionDistance);
+	}
+	
 	public void initialize(String name, ArrayList<Object> startingItem)
 	{
 		System.out.println("Player: Initializing...");
@@ -157,22 +160,33 @@ public class Player extends GameObject
 						{
 							if (name.equals("LClick"))
 							{
-								if (door.isOpen())
+								if (door.isClosed())
 								{
-									System.out.println("Open !");
-									door.close();
+									System.out.println("Openning Door !");
+									door.open();
 									target.getMaterial().setColor("Color", ColorRGBA.Green);
 								}
 								else
 								{
-									System.out.println("Close !");
-									door.open();
+									System.out.println("Closing Door !");
+									door.close();
 									target.getMaterial().setColor("Color", ColorRGBA.Red);
 								}
 							}
 							if (name.equals("RClick"))
 							{
-								System.out.println("RClick");
+								Vector3f pLoc = currentPlayer.getGeometry().getWorldTranslation();
+								Vector3f dLoc = door.getGeometry().getWorldTranslation();
+								Vector3f d = new Vector3f(FastMath.abs(pLoc.x) - FastMath.abs(dLoc.x),
+										FastMath.abs(pLoc.y) - FastMath.abs(dLoc.y),
+										FastMath.abs(pLoc.z) - FastMath.abs(dLoc.z));
+								float distance = FastMath.sqrt(d.x * d.x + d.y * d.y + d.z * d.z);
+								
+								if (distance > currentPlayer.getActionDistance())
+									{
+										System.out.println("Too far");
+										return ;
+									}
 								Room nextRoom = door.getOtherRoom(currentPlayer.getCurrentRoom());
 								if (nextRoom != null)
 								{

@@ -1,7 +1,6 @@
 package game;
 
 import com.jme3.asset.AssetManager;
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
@@ -17,7 +16,6 @@ public abstract class GameScene extends GameObject
 
 	public GameScene()
 	{
-		// TODO Auto-generated constructor stub
 	}
 
 	public void initializeGameScene(String gameSceneName)
@@ -29,7 +27,7 @@ public abstract class GameScene extends GameObject
 	{
 		System.out.println("GameScene: Initializing " + floorName + "...");
 
-		ColorRGBA color = ColorRGBA.White;
+		ColorRGBA color = ColorRGBA.randomColor();
 		Mesh mesh = new Box(1, 1, 1);
 		
 		this.initializeGameObject(assetManager, color, mesh, floorName);

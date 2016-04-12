@@ -30,8 +30,8 @@ public class Door extends GameObject
 	// Returns room on other side of door from room r
 	public Room getOtherRoom(Room r)
 	{
-		System.out.println("Door Status: " + _isClosed);
-		System.out.println(r.getName());
+		System.out.println("Door is closed: " + _isClosed);
+		System.out.println("Door to " + r.getName());
 		if (_isClosed)
 			return (null);
 
@@ -42,19 +42,19 @@ public class Door extends GameObject
 	public void open()
 	{
 		_isClosed = false;
-		this.getGeometry().getMaterial().setColor("Color", ColorRGBA.Green);
+//		this.getGeometry().getMaterial().setColor("Color", ColorRGBA.Green);
 	}
 
 	// Close the door
 	public void close()
 	{
 		_isClosed = true;
-		this.getGeometry().getMaterial().setColor("Color", ColorRGBA.Red);
+//		this.getGeometry().getMaterial().setColor("Color", ColorRGBA.Red);
 	}
 	
-	public boolean isOpen()
+	public boolean isClosed()
 	{
-		return (!_isClosed);
+		return (_isClosed);
 	}
 
 	@Override

@@ -1,9 +1,6 @@
 package game;
 
-import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
-import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.input.FlyByCamera;
 import com.jme3.input.InputManager;
 import com.jme3.renderer.Camera;
