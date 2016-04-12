@@ -44,14 +44,18 @@ public class GameManager
 	private Map				_map;
 	// The player
 	private Player			_player			= null;
-	// Game State
+	// Game State (used to receive inputs)
 	private boolean			_isRunning		= false;
 	// Reference to Game Camera
 	private Camera			_cam			= null;
-
+	// Game Camera properties
 	private FlyByCamera		_flyCam			= null;
 	
 
+	/**
+	 * Getters
+	 */
+	
 	public AssetManager getAssetManager()
 	{
 		return (_assetManager);
@@ -66,12 +70,12 @@ public class GameManager
 	{
 		return (_rootNode);
 	}
-	
+
 	public boolean getGameState()
 	{
 		return (_isRunning);
 	}
-	
+
 	public Player getPlayer()
 	{
 		return (_player);
@@ -82,22 +86,33 @@ public class GameManager
 		return (_cam);
 	}
 	
+	
 	public enum Direction
 	{
 		Up, Down, Left, Right
 	};
 
+	/**
+	 * Initialize GameManager
+	 * @param assetManager	Reference to Asset Manager
+	 * @param rootNode		Reference to Root Node
+	 * @param inputManager	Reference to Input Manager
+	 * @param cam			Reference to Game Camera
+	 * @param flyCam		Reference to Fly Camera
+	 */
 	public void initialize(AssetManager assetManager, Node rootNode, InputManager inputManager,
 			Camera cam, FlyByCamera flyCam)
 	{
 		System.out.println("GameManager: Initializing...");
 
+		// Set references
 		_assetManager = assetManager;
 		_inputManager = inputManager;
 		_rootNode = rootNode;
 		_cam = cam;
 		_flyCam = flyCam;
 
+		// Initialize Game Map
 		_map = new Map();
 		_map.initialize();
 
@@ -106,18 +121,29 @@ public class GameManager
 		_player.initialize("Player 1", null);
 	}
 
+	/**
+	 * Initialize Inputs
+	 */
 	public void initializeInput()
 	{
+		// Initialize Player Inputs
 		_player.initializeInput();
 	}
 
+	/**
+	 * Initialize Graphics
+	 */
 	public void initializeGraphic()
 	{
+		// Initialize Map Graphics
 		_map.initializeGraphic();
+		// Initialize Player Graphics
 		_player.initializeGraphic();
 		
+		// Get the first Room of the Map
 		Room startingRoom = (Room) (_map.getLocations().nextElement());
 
+		// Load the first Room
 		this.changeScene(_player.moveToRoom(startingRoom));
 		
 		// Set the Camera location to have a top-down view
@@ -126,35 +152,45 @@ public class GameManager
 		// Look at the center
 		_cam.lookAt(new Vector3f(0f, 0f, 0f), new Vector3f(0f, 0f, -90f));
 		
+		// Enable Cursor
 		_flyCam.setDragToRotate(true);
 		_inputManager.setCursorVisible(true);
 	}
 
+	/**
+	 * Pause the Game (disable inputs)
+	 */
 	public void pause()
 	{
 		_isRunning = false;
 	}
 
+	/**
+	 * Resume the Game (enable inputs)
+	 */
 	public void unPause()
 	{
 		_isRunning = true;
 	}
 
+	/**
+	 * Load a new Scene
+	 * @param previousRoom
+	 */
 	public void changeScene(Room previousRoom)
 	{
+		// Disable Inputs before changing scene
 		this.pause();
-		
+
+		// Get the new scene from player
 		Node newScene = _player.getCurrentRoom().getNode();
 
+		// Load graphically the new scene
+		// Detach from root node previous scene
 		_rootNode.detachAllChildren();
 		_rootNode.attachChild(newScene);
 		_rootNode.attachChild(_player.getGeometry());
+		// Enable Inputs once scene loaded
 		this.unPause();
 	}
-
-	public void update()
-	{
-
-	}
-
 }

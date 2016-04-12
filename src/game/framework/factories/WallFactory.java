@@ -4,6 +4,9 @@ import game.framework.Wall;
 
 public class WallFactory
 {
+	/**
+	 * Singleton Factory pattern
+	 */
 	protected static WallFactory _instance = null;
 
 	protected WallFactory()

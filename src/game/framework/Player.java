@@ -28,6 +28,9 @@ import game.GameObject;
 
 public class Player extends GameObject
 {
+	/**
+	 * Player Attributes
+	 */
 	// Name of the player
 	protected String			_name	= null;
 	// Room the player is in
@@ -39,6 +42,9 @@ public class Player extends GameObject
 	// Minimum action Distance
 	protected float _actionDistance = 2f;
 	
+	/**
+	 * Player Constructor
+	 */
 	public Player()
 	{
 		System.out.println("Player Created");
@@ -46,11 +52,19 @@ public class Player extends GameObject
 		_items = new ArrayList<Object>();
 	}
 
+	/**
+	 * Getters
+	 */
 	public float getActionDistance()
 	{
 		return (_actionDistance);
 	}
 	
+	/**
+	 * Initialize Player
+	 * @param name Player name
+	 * @param startingItem Player starting items
+	 */
 	public void initialize(String name, ArrayList<Object> startingItem)
 	{
 		System.out.println("Player: Initializing...");
@@ -60,57 +74,74 @@ public class Player extends GameObject
 			_items.addAll(startingItem);
 	}
 
+	/**
+	 * Initialize Player Graphics
+	 */
 	@Override
 	public void initializeGraphic()
 	{
 		System.out.println("Player: Initializing Graphic...");
 
+		// Player Color
 		ColorRGBA playerColor = ColorRGBA.Cyan;
+		// Player Graphics
 		Box playerMesh = new Box(1, 1, 1);
 		this.initializeGameObject(GameManager.getInstance().getAssetManager(), playerColor, playerMesh, _name);
 		_geom.scale(0.5f, 0.5f, 0.5f);
+		// Player Position
 		_geom.setLocalTranslation(0, _geom.getLocalScale().y, 0);
 	}
 
+	/**
+	 * Initialize Player Inputs
+	 */
 	public void initializeInput()
 	{
 		InputManager inputManager = GameManager.getInstance().getInputManager();
 
+		// Movement Inputs
 		inputManager.addMapping("Up", new KeyTrigger(KeyInput.KEY_T));
 		inputManager.addMapping("Down", new KeyTrigger(KeyInput.KEY_G));
 		inputManager.addMapping("Left", new KeyTrigger(KeyInput.KEY_F));
 		inputManager.addMapping("Right", new KeyTrigger(KeyInput.KEY_H));
+		// Action Inputs
 		inputManager.addMapping("LClick", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
 		inputManager.addMapping("RClick", new MouseButtonTrigger(MouseInput.BUTTON_RIGHT));
 
+		// Listeners
 		inputManager.addListener(analogListener, "Up", "Down", "Left", "Right");
 		inputManager.addListener(actionListener, "LClick", "RClick");
 	}
 
-	// Listener User input
+	// Analog Listener
 	private AnalogListener analogListener = new AnalogListener()
 	{
 		public void onAnalog(String name, float value, float tpf)
 		{
 			boolean isRunning = GameManager.getInstance().getGameState();
 			Geometry player = GameManager.getInstance().getPlayer().getGeometry();
+			// If Inputs enabled
 			if (isRunning)
 			{
+				// Moving Up
 				if (name.equals("Up"))
 				{
 					Vector3f v = player.getLocalTranslation();
 					player.setLocalTranslation(v.x, v.y, v.z - value * _speed);
 				}
+				// Moving Down
 				if (name.equals("Down"))
 				{
 					Vector3f v = player.getLocalTranslation();
 					player.setLocalTranslation(v.x, v.y, v.z + value * _speed);
 				}
+				// Moving Right
 				if (name.equals("Right"))
 				{
 					Vector3f v = player.getLocalTranslation();
 					player.setLocalTranslation(v.x + value * _speed, v.y, v.z);
 				}
+				// Moving Left
 				if (name.equals("Left"))
 				{
 					Vector3f v = player.getLocalTranslation();
@@ -124,42 +155,58 @@ public class Player extends GameObject
 		}
 	};
 
+	/**
+	 * Action Listener
+	 */
 	private ActionListener actionListener = new ActionListener()
 	{
 		public void onAction(String name, boolean isPressed, float tpf)
 		{
 			boolean isRunning = GameManager.getInstance().getGameState();
+			// If Inputs enabled
 			if (isRunning)
 			{
+				// If there is a mouse click
 				if ((name.equals("LClick") || name.equals("RClick")) && isPressed)
 				{
+					// Preparing for a Raycast
 					Node rootNode = GameManager.getInstance().getRootNode();
 					Camera cam = GameManager.getInstance().getCamera();
 					InputManager inputManager = GameManager.getInstance().getInputManager();
 					
 					CollisionResults results = new CollisionResults();
+					// Get Cursor Position on the window
 					Vector2f click2d = inputManager.getCursorPosition();
+					// Get Cursor 3D Position
 					Vector3f click3d = cam.getWorldCoordinates(
 							new Vector2f(click2d.getX(), click2d.getY()), 0f);
 
+					// Calculate Cursor Direction
 					Vector3f dir = cam.getWorldCoordinates(
 							new Vector2f(click2d.getX(), click2d.getY()), 1f).
 							subtractLocal(click3d);
-					
+					// Raycast from the cursor position
 					Ray ray = new Ray(click3d, dir);
 					
+					// Save collided objects from the scene in results
 					rootNode.collideWith(ray, results);
 					
+					// If there is a clicked object
 					if (results.size() > 0)
 					{
 						Geometry target = results.getClosestCollision().getGeometry();
 						Door door = null;
 						Player currentPlayer = GameManager.getInstance().getPlayer();
+						// Check if there is a Door
 						door = currentPlayer.getCurrentRoom().getDoorByGeometry(target);
+						
+						// If it's a door
 						if (door != null)
 						{
+							// On Left click
 							if (name.equals("LClick"))
 							{
+								// If Door is closed
 								if (door.isClosed())
 								{
 									System.out.println("Openning Door !");
@@ -173,20 +220,24 @@ public class Player extends GameObject
 									target.getMaterial().setColor("Color", ColorRGBA.Red);
 								}
 							}
+							// On Right Click
 							if (name.equals("RClick"))
 							{
 								Vector3f pLoc = currentPlayer.getGeometry().getWorldTranslation();
 								Vector3f dLoc = door.getGeometry().getWorldTranslation();
+								// Calculate distance between Player and Door
 								Vector3f d = new Vector3f(FastMath.abs(pLoc.x) - FastMath.abs(dLoc.x),
 										FastMath.abs(pLoc.y) - FastMath.abs(dLoc.y),
 										FastMath.abs(pLoc.z) - FastMath.abs(dLoc.z));
 								float distance = FastMath.sqrt(d.x * d.x + d.y * d.y + d.z * d.z);
 								
+								// If Player can't interact with the Door
 								if (distance > currentPlayer.getActionDistance())
 									{
 										System.out.println("Too far");
 										return ;
 									}
+								// Change Room
 								Room nextRoom = door.getOtherRoom(currentPlayer.getCurrentRoom());
 								if (nextRoom != null)
 								{
@@ -247,6 +298,9 @@ public class Player extends GameObject
 		r.enter(this);
 		// Save the new room in Player object
 		_room = r;
+
+		// Player Position
+		_geom.setLocalTranslation(0, _geom.getLocalScale().y, 0);
 
 		// Return the last room
 		return lastRoom;

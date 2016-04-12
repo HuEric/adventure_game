@@ -15,12 +15,24 @@ import game.framework.factories.WallFactory;
 
 public class Room extends MapSite
 {
+	/**
+	 * Room Attributes
+	 */
+	// Room number
 	protected int				_number;
+	// Room name
 	protected String			_name;
+	// Room's walls
 	protected ArrayList<Wall>	_walls		= null;
+	// Player in the Room
 	protected ArrayList<Player>	_players	= null;
+	// Objects in the Room
 	protected ArrayList<Object>	_things		= null;
 
+	/**
+	 * Room Constructor
+	 * @param number Room number
+	 */
 	public Room(int number)
 	{
 		System.out.println("Room " + number + " Created");
@@ -32,6 +44,10 @@ public class Room extends MapSite
 		_things = new ArrayList<Object>();
 	}
 
+	/**
+	 * Initialize Room
+	 * Room contains 4 walls
+	 */
 	public void initialize()
 	{
 		int wallNumber = 4;
@@ -45,6 +61,9 @@ public class Room extends MapSite
 		}
 	}
 
+	/**
+	 * Initialize Room Graphics
+	 */
 	@Override
 	public void initializeGraphic()
 	{
@@ -52,30 +71,34 @@ public class Room extends MapSite
 
 		// Initialize Game Scene
 		this.initializeGameScene(_name);
-		// Create Floor Graphic
+		// Create Floor Graphics
 		String floorName = "Floor " + _name;
 		this.initializeFloor(GameManager.getInstance().getAssetManager(), floorName);
 		
-		// Create Wall Graphic
+		// Create Wall Graphics
 		int wallNumber = 4;
 		for (int i = 0; i < wallNumber; i++)
 		{
 			_walls.get(i).initializeGraphic();
 		}
 
+		// Left Wall Position
 		Geometry leftWall = _walls.get(0).getGeometry();
 		leftWall.setLocalTranslation(-(5 - leftWall.getLocalScale().x), leftWall.getLocalScale().y, 0);
 		this.addGameObjectToScene(leftWall);
 
+		// Top Wall Position
 		Geometry upWall = _walls.get(1).getGeometry();
 		upWall.setLocalTranslation(0, upWall.getLocalScale().y, -(5 - leftWall.getLocalScale().x));
 		upWall.rotate(0, FastMath.DEG_TO_RAD * 90f, 0);
 		this.addGameObjectToScene(upWall);
 
+		// Right Wall Position
 		Geometry rightWall = _walls.get(2).getGeometry();
 		rightWall.setLocalTranslation((5 - rightWall.getLocalScale().x), rightWall.getLocalScale().y, 0);
 		this.addGameObjectToScene(rightWall);
 
+		// Down Wall Position
 		Geometry downWall = _walls.get(3).getGeometry();
 		downWall.setLocalTranslation(0, downWall.getLocalScale().y, (5 - downWall.getLocalScale().x));
 		downWall.rotate(0, -FastMath.DEG_TO_RAD * 90f, 0);
@@ -124,6 +147,7 @@ public class Room extends MapSite
 		else
 			wallNumber -= 2;
 		
+		// Set the Door in the other Room
 		roomToLink.setDoorOnWall(wallNumber, newDoor);
 	}
 
@@ -138,6 +162,11 @@ public class Room extends MapSite
 		currentWall.setDoor(newDoor);
 	}
 
+	/**
+	 * Find with the Geometry if the Door is from this Room
+	 * @param doorGeo Door Geometry
+	 * @return Door
+	 */
 	public Door getDoorByGeometry(Geometry doorGeo)
 	{
 		Enumeration<Wall> walls = Collections.enumeration(_walls);
@@ -149,12 +178,17 @@ public class Room extends MapSite
 		}
 		return null;
 	}
-	
+	/**
+	 * Getters
+	 */
 	public String getName()
 	{
 		return (_name);
 	}
 	
+	/**
+	 * Player Enter this Room
+	 */
 	@Override
 	void enter(Player p)
 	{
@@ -164,43 +198,66 @@ public class Room extends MapSite
 			_players.add(p);
 	}
 
+	/**
+	 * Player Exit this Room
+	 */
 	@Override
 	void exit(Player p)
 	{
 		_players.remove(p);
 	}
 
-	/** Returns an enumeration of the players in the room */
+	/**
+	 *  Returns an enumeration of the players in the room
+	 * @return Player List
+	 */
 	public Enumeration<Player> players()
 	{
 		return Collections.enumeration(_players);
 	}
 
-	/** Returns true if player p is in the room */
+	/**
+	 *  Returns true if player p is in the room
+	 * @param p Player
+	 * @return Result
+	 */
 	public boolean hasPlayer(Player p)
 	{
 		return _players.contains(p);
 	}
 
-	/** Returns an enumeration of the movable things in the room */
+	/**
+	 *  Returns an enumeration of the movable things in the room
+	 * @return Object List
+	 */
 	public Enumeration<Object> things()
 	{
 		return Collections.enumeration(_things);
 	}
 
-	/** Returns true if the movable thing t is in the room */
+	/**
+	 *  Returns true if the movable thing t is in the room
+	 * @param t Object
+	 * @return Result
+	 */
 	public boolean hasThing(Object t)
 	{
 		return _things.contains(t);
 	}
 
-	/** Adds the movable thing t to the room */
+	/**
+	 *  Adds the movable thing t to the room
+	 * @param t Object to be added
+	 */
 	public void addThing(Object t)
 	{
 		_things.add(t);
 	}
 
-	/** Removes the movable thing t from the room */
+	/**
+	 *  Removes the movable thing t from the room
+	 * @param t Object to be removed
+	 */
 	public void removeThing(Object t)
 	{
 		_things.remove(t);

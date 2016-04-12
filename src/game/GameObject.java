@@ -8,6 +8,9 @@ import com.jme3.scene.Mesh;
 
 public abstract class GameObject
 {
+	/**
+	 * Graphics Attributes
+	 */
 	protected Geometry _geom = null;
 	protected Material _mat = null;
 
@@ -16,21 +19,32 @@ public abstract class GameObject
 	{
 	}
 
+	/**
+	 * Initialize a Game Object
+	 * @param assetManager	Reference to Asset Manager
+	 * @param color			Color of the Game Object
+	 * @param mesh			Mesh of the Game Object
+	 * @param objectName	Game Object name
+	 */
 	public void initializeGameObject(AssetManager assetManager, ColorRGBA color, Mesh mesh, String objectName)
 	{
 		// Create an object from the mesh
 		_geom = new Geometry(objectName, mesh);
-		// Create a simple blue material
+		// Create a simple material
 		_mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+		// Set the material color
 		_mat.setColor("Color", color);
-		// Give the object the blue material
+		// Give the object the material
 		_geom.setMaterial(_mat);
 	}
 	
+	/**
+	 * Getters
+	 */
 	public Geometry getGeometry()
 	{
 		return _geom;
 	}
-	
+
 	public abstract void initializeGraphic();
 }

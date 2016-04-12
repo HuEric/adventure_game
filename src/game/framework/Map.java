@@ -9,8 +9,14 @@ import game.framework.factories.RoomFactory;
 
 public class Map
 {
+	/**
+	 * Map Attributes
+	 */
 	protected ArrayList<MapSite> _locations = null;
 
+	/**
+	 * Map Constructor
+	 */
 	public Map()
 	{
 		System.out.println("Map Created");
@@ -18,6 +24,11 @@ public class Map
 		_locations = new ArrayList<MapSite>();
 	}
 
+	/**
+	 * Initialize Map
+	 * Create 13 Rooms
+	 * And links them (create doors)
+	 */
 	public void initialize()
 	{
 		int totalRoom = 13;
@@ -94,28 +105,22 @@ public class Map
 		firstRoom = ((Room) _locations.get(11));
 		secondRoom = ((Room) _locations.get(12));
 		firstRoom.roomToLinkWith(secondRoom, GameManager.Direction.Up, true);
-
 	}
 
+	/**
+	 * Initialize Map Graphics
+	 */
 	public void initializeGraphic()
 	{
-		// Initialize each rooms
+		// Initialize each rooms graphics
 		Enumeration<MapSite> rooms = this.getLocations();
 
 		while (rooms.hasMoreElements())
-		{
 			((Room)rooms.nextElement()).initializeGraphic();
-		}
-	}
-
-	public void update()
-	{
-
 	}
 
 	/**
 	 * Get Rooms
-	 * 
 	 * @return Enumeration of Rooms
 	 */
 	public Enumeration<MapSite> getLocations()

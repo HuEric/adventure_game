@@ -8,59 +8,73 @@ import game.GameManager;
 
 public class DoorWithLock extends Door
 {
-
+	/**
+	 * DoorWithLock Attributes
+	 */
 	protected boolean	_isLocked = true;
 
 	public DoorWithLock()
-	{
-		
+	{		
 	}
 
+	/**
+	 * DoorWithLock Constructor
+	 * @param r1
+	 * @param r2
+	 * @param isClosed
+	 * @param name
+	 * @param isLocked
+	 */
 	public DoorWithLock(Room r1, Room r2, boolean isClosed, String name, boolean isLocked)
 	{
 		super(r1, r2, isClosed, name);
 		_isLocked = isLocked;
 	}
 
+	/**
+	 * Initialize DoorWithLock Graphics
+	 */
 	@Override
 	public void initializeGraphic()
 	{
-		ColorRGBA wallColor;
+		ColorRGBA doorColor;
+
+		if (_isLocked)						// If locked, Magenta color
+			doorColor = ColorRGBA.Magenta;
+		else if (_isClosed)					// If closed, Red Color
+			doorColor = ColorRGBA.Red;
+		else								// If opened, Green Color
+			doorColor = ColorRGBA.Green;
 		
-		if (_isLocked)
-			wallColor = ColorRGBA.Magenta;
-		else if (_isClosed)
-			wallColor = ColorRGBA.Red;
-		else
-			wallColor = ColorRGBA.Green;
-		
-		Mesh wallMesh = new Box(1, 1, 1);
-		this.initializeGameObject(GameManager.getInstance().getAssetManager(), wallColor, wallMesh, _name);
+		// Create DoorWithLock Graphics
+		Mesh doorMesh = new Box(1, 1, 1);
+		this.initializeGameObject(GameManager.getInstance().getAssetManager(), doorColor, doorMesh, _name);
 		this.getGeometry().scale(0.1f, 1, 5);
 	}
 
+	/**
+	 * Open a Door if unlocked
+	 */
 	@Override
-	// Can open if unlocked
 	public void open()
 	{
 		if (!_isLocked)
-		{
 			_isClosed = false;
-			this.getGeometry().getMaterial().setColor("Color", ColorRGBA.Green);
-		}
 	}
 
-	// Lock the Door
+	/**
+	 * Lock the Door
+	 */
 	public void lock()
 	{
 		_isLocked = true;
-		this.getGeometry().getMaterial().setColor("Color", ColorRGBA.Magenta);
 	}
 	
-	// Unlock the Door
+	/**
+	 * Unlock the Door
+	 */
 	public void unlock()
 	{
 		_isLocked = false;
-		this.getGeometry().getMaterial().setColor("Color", ColorRGBA.Red);
 	}
 }

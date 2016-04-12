@@ -5,6 +5,9 @@ import game.framework.Room;
 
 public class DoorFactory
 {
+	/**
+	 * Singleton Factory pattern
+	 */
 	protected static DoorFactory _instance = null;
 
 	protected DoorFactory()
@@ -16,13 +19,6 @@ public class DoorFactory
 		if (_instance == null)
 			_instance = new DoorFactory();
 		return _instance;
-	}
-
-	public Door createDoor()
-	{
-		Door newDoor = new Door();
-
-		return (newDoor);
 	}
 
 	public Door createDoor(Room r1, Room r2, boolean isClosed, String doorName)

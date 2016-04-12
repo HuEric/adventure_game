@@ -4,6 +4,9 @@ import game.framework.Room;
 
 public class RoomFactory
 {
+	/**
+	 * Singleton Factory pattern
+	 */
 	protected static RoomFactory _instance = null;
 
 	protected RoomFactory()

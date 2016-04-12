@@ -6,6 +6,9 @@ import game.framework.Room;
 
 public class DoorWithLockFactory
 {
+	/**
+	 * Singleton Factory pattern
+	 */
 	private static DoorWithLockFactory _instance = null;
 
 	private DoorWithLockFactory()
@@ -24,12 +27,5 @@ public class DoorWithLockFactory
 		Door newDoor = new DoorWithLock(r1, r2, isClosed, doorName, isLocked);
 
 		return (newDoor);
-	}
-
-	public Door createDoor()
-	{
-		Door newDoorWithLock = new DoorWithLock();
-
-		return (newDoorWithLock);
 	}
 }

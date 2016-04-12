@@ -4,6 +4,9 @@ import game.framework.Player;
 
 public class PlayerFactory
 {
+	/**
+	 * Singleton Factory pattern
+	 */
 	protected static PlayerFactory _instance = null;
 
 	protected PlayerFactory()
