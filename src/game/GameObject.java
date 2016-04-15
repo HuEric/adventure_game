@@ -6,7 +6,9 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 
-public abstract class GameObject
+import game.framework.Subject;
+
+public class GameObject extends Subject implements IGameGraphic
 {
 	/**
 	 * Graphics Attributes
@@ -46,5 +48,9 @@ public abstract class GameObject
 		return _geom;
 	}
 
-	public abstract void initializeGraphic();
+	@Override
+	public void initializeGraphic()
+	{
+		
+	}
 }

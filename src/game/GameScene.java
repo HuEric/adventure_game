@@ -7,8 +7,15 @@ import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
 
-public abstract class GameScene extends GameObject
+import game.framework.Subject;
+
+public abstract class GameScene extends Subject implements IGameGraphic
 {
+	/**
+	 * Graphics Attributes
+	 */
+	protected GameObject	_floor = null;
+	
 	/**
 	 * Scene Node (every GameObject will be attached to it)
 	 */
@@ -44,19 +51,21 @@ public abstract class GameScene extends GameObject
 	{
 		System.out.println("GameScene: Initializing " + floorName + "...");
 
+		_floor = new GameObject();
+		
 		// Randomly generate a color
 		ColorRGBA color = ColorRGBA.randomColor();
 		// Box Mesh
 		Mesh mesh = new Box(1, 1, 1);
 		
-		// Initialize the floor with the mesh
-		this.initializeGameObject(assetManager, color, mesh, floorName);
+		_floor.initializeGameObject(assetManager, color, mesh, floorName);
+		Geometry floorGeom = _floor.getGeometry();
 		
 		// Scale and Translate the Floor to the position
-		this.getGeometry().scale(floorLength, floorHeight, floorWidth);
-		this.getGeometry().setLocalTranslation(0, -(_geom.getLocalScale().y), 0);
+		floorGeom.scale(floorLength, floorHeight, floorWidth);
+		floorGeom.setLocalTranslation(0, -(floorGeom.getLocalScale().y), 0);
 		// Attach the floor to the Scene Node
-		this.addGameObjectToScene(this);
+		this.addGameObjectToScene(floorGeom);
 	}
 	
 	/**
@@ -91,5 +100,10 @@ public abstract class GameScene extends GameObject
 	public Node getNode()
 	{
 		return (_node);
+	}
+	
+	public Geometry getGeometry()
+	{
+		return _floor.getGeometry();
 	}
 }

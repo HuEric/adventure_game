@@ -60,6 +60,7 @@ public class Door extends GameObject
 	public void open()
 	{
 		_isClosed = false;
+		_geom.getMaterial().setColor("Color", ColorRGBA.Green);
 	}
 
 	/**
@@ -68,6 +69,7 @@ public class Door extends GameObject
 	public void close()
 	{
 		_isClosed = true;
+		_geom.getMaterial().setColor("Color", ColorRGBA.Red);
 	}
 	
 	/**

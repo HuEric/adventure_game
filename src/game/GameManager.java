@@ -46,10 +46,8 @@ public class GameManager
 	private Player			_player			= null;
 	// Game State (used to receive inputs)
 	private boolean			_isRunning		= false;
-	// Reference to Game Camera
-	private Camera			_cam			= null;
-	// Game Camera properties
-	private FlyByCamera		_flyCam			= null;
+	// Game Camera
+	private GameCamera		_cam = null;
 	
 
 	/**
@@ -81,7 +79,7 @@ public class GameManager
 		return (_player);
 	}
 	
-	public Camera getCamera()
+	public GameCamera getGameCamera()
 	{
 		return (_cam);
 	}
@@ -109,8 +107,7 @@ public class GameManager
 		_assetManager = assetManager;
 		_inputManager = inputManager;
 		_rootNode = rootNode;
-		_cam = cam;
-		_flyCam = flyCam;
+		_cam = new GameCamera(cam, flyCam);
 
 		// Initialize Game Map
 		_map = new Map();
@@ -148,12 +145,15 @@ public class GameManager
 		
 		// Set the Camera location to have a top-down view
 		Vector3f loc = new Vector3f(0f, 14f, 3f);
-		_cam.setLocation(loc);
+		_cam.setCameraLocation(loc);
 		// Look at the center
-		_cam.lookAt(new Vector3f(0f, 0f, 0f), new Vector3f(0f, 0f, -90f));
+		_cam.setCameraLookAt(new Vector3f(0f, 0f, 0f), new Vector3f(0f, 0f, -90f));
+		
+		// Camera observe Starting Room
+		_cam.setSubject(startingRoom);
 		
 		// Enable Cursor
-		_flyCam.setDragToRotate(true);
+		_cam.setDrag(true);
 		_inputManager.setCursorVisible(true);
 	}
 
@@ -183,13 +183,18 @@ public class GameManager
 		this.pause();
 
 		// Get the new scene from player
-		Node newScene = _player.getCurrentRoom().getNode();
+		Room newRoom = _player.getCurrentRoom();
+		Node newScene = newRoom.getNode();
 
 		// Load graphically the new scene
 		// Detach from root node previous scene
 		_rootNode.detachAllChildren();
 		_rootNode.attachChild(newScene);
 		_rootNode.attachChild(_player.getGeometry());
+		
+		// Camera observe new scene
+		_cam.changeScene(newRoom);
+		
 		// Enable Inputs once scene loaded
 		this.unPause();
 	}

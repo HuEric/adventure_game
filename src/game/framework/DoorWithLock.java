@@ -59,7 +59,10 @@ public class DoorWithLock extends Door
 	public void open()
 	{
 		if (!_isLocked)
-			_isClosed = false;
+			{
+				_isClosed = false;
+				_geom.getMaterial().setColor("Color", ColorRGBA.Green);
+			}
 	}
 
 	/**

@@ -59,7 +59,12 @@ public class Player extends GameObject
 	{
 		return (_actionDistance);
 	}
-	
+
+	public Room getCurrentRoom()
+	{
+		return (_room);
+	}
+
 	/**
 	 * Initialize Player
 	 * @param name Player name
@@ -128,24 +133,28 @@ public class Player extends GameObject
 				{
 					Vector3f v = player.getLocalTranslation();
 					player.setLocalTranslation(v.x, v.y, v.z - value * _speed);
+					GameManager.getInstance().getPlayer().notifyObserver();
 				}
 				// Moving Down
 				if (name.equals("Down"))
 				{
 					Vector3f v = player.getLocalTranslation();
 					player.setLocalTranslation(v.x, v.y, v.z + value * _speed);
+					GameManager.getInstance().getPlayer().notifyObserver();
 				}
 				// Moving Right
 				if (name.equals("Right"))
 				{
 					Vector3f v = player.getLocalTranslation();
 					player.setLocalTranslation(v.x + value * _speed, v.y, v.z);
+					GameManager.getInstance().getPlayer().notifyObserver();
 				}
 				// Moving Left
 				if (name.equals("Left"))
 				{
 					Vector3f v = player.getLocalTranslation();
 					player.setLocalTranslation(v.x - value * _speed, v.y, v.z);
+					GameManager.getInstance().getPlayer().notifyObserver();
 				}
 			}
 			else
@@ -169,9 +178,9 @@ public class Player extends GameObject
 				// If there is a mouse click
 				if ((name.equals("LClick") || name.equals("RClick")) && isPressed)
 				{
-					// Preparing for a Raycast
+					// Preparing for a Ray cast
 					Node rootNode = GameManager.getInstance().getRootNode();
-					Camera cam = GameManager.getInstance().getCamera();
+					Camera cam = GameManager.getInstance().getGameCamera().getCamera();
 					InputManager inputManager = GameManager.getInstance().getInputManager();
 					
 					CollisionResults results = new CollisionResults();
@@ -185,7 +194,7 @@ public class Player extends GameObject
 					Vector3f dir = cam.getWorldCoordinates(
 							new Vector2f(click2d.getX(), click2d.getY()), 1f).
 							subtractLocal(click3d);
-					// Raycast from the cursor position
+					// Ray cast from the cursor position
 					Ray ray = new Ray(click3d, dir);
 					
 					// Save collided objects from the scene in results
@@ -261,7 +270,23 @@ public class Player extends GameObject
 		}
 	};
 	
-	// Returns an enumeration of the items the player is carrying
+	/**
+	 * Notify Observers
+	 * Observer Pattern
+	 */
+	@Override
+	public void notifyObserver()
+	{
+		for (int i = 0; i < _obs.size(); i++)
+		{
+			_obs.get(i).update(this.getGeometry().getWorldTranslation());
+		}
+	}
+	
+	/**
+	 * Returns an enumeration of the items the player is carrying
+	 * Iterator Pattern
+	 */
 	public Enumeration<Object> items()
 	{
 		return Collections.enumeration(_items);
@@ -304,10 +329,5 @@ public class Player extends GameObject
 
 		// Return the last room
 		return lastRoom;
-	}
-
-	public Room getCurrentRoom()
-	{
-		return (_room);
 	}
 }

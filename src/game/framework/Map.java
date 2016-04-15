@@ -113,6 +113,7 @@ public class Map
 	public void initializeGraphic()
 	{
 		// Initialize each rooms graphics
+		// Iterator Pattern
 		Enumeration<MapSite> rooms = this.getLocations();
 
 		while (rooms.hasMoreElements())
