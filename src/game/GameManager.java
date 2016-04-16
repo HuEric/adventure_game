@@ -12,6 +12,11 @@ import game.framework.Player;
 import game.framework.Room;
 import game.framework.factories.PlayerFactory;
 
+/**
+ * GameManager
+ * Contains Game Engine and Game Framework components
+ * Singleton Pattern
+ */
 public class GameManager
 {
 	/**
@@ -125,6 +130,8 @@ public class GameManager
 	{
 		// Initialize Player Inputs
 		_player.initializeInput();
+		// Initialize Camera Inputs
+		_cam.initializeInput();
 	}
 
 	/**
@@ -144,7 +151,7 @@ public class GameManager
 		this.changeScene(_player.moveToRoom(startingRoom));
 		
 		// Set the Camera location to have a top-down view
-		Vector3f loc = new Vector3f(0f, 14f, 3f);
+		Vector3f loc = new Vector3f(0f, 14f, 0f);
 		_cam.setCameraLocation(loc);
 		// Look at the center
 		_cam.setCameraLookAt(new Vector3f(0f, 0f, 0f), new Vector3f(0f, 0f, -90f));

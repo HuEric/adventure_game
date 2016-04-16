@@ -48,6 +48,9 @@ public class GameObject extends Subject implements IGameGraphic
 		return _geom;
 	}
 
+	/**
+	 * Initialize Graphics
+	 */
 	@Override
 	public void initializeGraphic()
 	{

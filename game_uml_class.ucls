@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="game.AdventureGame" project="adventure_game" 
     file="/adventure_game/src/game/AdventureGame.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="118" y="-30"/>    
+    <position height="-1" width="-1" x="318" y="-110"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="game.GameObject" project="adventure_game" 
     file="/adventure_game/src/game/GameObject.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1577" y="142"/>    
+    <position height="-1" width="-1" x="1689" y="142"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="game.GameScene" project="adventure_game" 
     file="/adventure_game/src/game/GameScene.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1176" y="208"/>    
+    <position height="-1" width="-1" x="1264" y="208"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="game.framework.MapSite" project="adventure_game" 
     file="/adventure_game/src/game/framework/MapSite.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1168" y="452"/>    
+    <position height="-1" width="-1" x="1256" y="448"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="game.framework.Player" project="adventure_game" 
     file="/adventure_game/src/game/framework/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1782" y="567"/>    
+    <position height="-1" width="-1" x="1946" y="567"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="game.framework.Room" project="adventure_game" 
     file="/adventure_game/src/game/framework/Room.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1117" y="890"/>    
+    <position height="-1" width="-1" x="1241" y="890"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="game.framework.Wall" project="adventure_game" 
     file="/adventure_game/src/game/framework/Wall.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1436" y="902"/>    
+    <position height="-1" width="-1" x="1548" y="902"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="game.framework.Door" project="adventure_game" 
     file="/adventure_game/src/game/framework/Door.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1670" y="1166"/>    
+    <position height="-1" width="-1" x="1718" y="1178"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="game.framework.DoorWithLock" project="adventure_game" 
     file="/adventure_game/src/game/framework/DoorWithLock.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1667" y="1403"/>    
+    <position height="-1" width="-1" x="1715" y="1415"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <interface id="13" language="java" name="game.IGameGraphic" project="adventure_game" 
     file="/adventure_game/src/game/IGameGraphic.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1366" y="-15"/>    
+    <position height="-1" width="-1" x="1478" y="-15"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,170 +138,187 @@
   </class>  
   <class id="16" language="java" name="game.framework.Subject" project="adventure_game" 
     file="/adventure_game/src/game/framework/Subject.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1354" y="-241"/>    
+    <position height="-1" width="-1" x="1466" y="-241"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="17">    
+  <interface id="17" language="java" name="game.IGameInput" project="adventure_game" 
+    file="/adventure_game/src/game/IGameInput.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1216" y="-16"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <generalization id="18">    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="11"/>  
   </generalization>  
-  <association id="18">    
+  <association id="19">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="19" name="_players"/>      
-      <multiplicity id="20" minimum="0" maximum="2147483647"/>    
+      <attribute id="20" name="_players"/>      
+      <multiplicity id="21" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="21">    
+  <association id="22">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="22" name="_room1"/>      
-      <multiplicity id="23" minimum="0" maximum="1"/>    
+      <attribute id="23" name="_room1"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="24">    
+  <realization id="25">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <realization id="26">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <association id="27">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="25" name="_door"/>      
-      <multiplicity id="26" minimum="0" maximum="1"/>    
+      <attribute id="28" name="_door"/>      
+      <multiplicity id="29" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="27">    
+  <realization id="30">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="13"/>  
   </realization>  
-  <association id="28">    
+  <association id="31">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="29" name="_walls"/>      
-      <multiplicity id="30" minimum="0" maximum="2147483647"/>    
+      <attribute id="32" name="_walls"/>      
+      <multiplicity id="33" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="31">    
+  <association id="34">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="32" name="_room2"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
+      <attribute id="35" name="_room2"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="34">    
+  <association id="37">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="35" name="_map"/>      
-      <multiplicity id="36" minimum="0" maximum="1"/>    
+      <attribute id="38" name="_map"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="37">    
+  <generalization id="40">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <association id="38">    
+  <association id="41">    
     <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="39" name="_subject"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
+      <attribute id="42" name="_subject"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="41">    
+  <generalization id="44">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="5"/>  
   </generalization>  
-  <generalization id="42">    
+  <generalization id="45">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="16"/>  
   </generalization>  
-  <association id="43">    
+  <association id="46">    
     <bendpoint x="464" y="568"/>    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="44" name="_player"/>      
-      <multiplicity id="45" minimum="0" maximum="1"/>    
+      <attribute id="47" name="_player"/>      
+      <multiplicity id="48" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="46">    
+  <generalization id="49">    
     <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <association id="47">    
+  <association id="50">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="48" name="_instance"/>      
-      <multiplicity id="49" minimum="0" maximum="1"/>    
+      <attribute id="51" name="_instance"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="50">    
+  <association id="53">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="51" name="_room"/>      
-      <multiplicity id="52" minimum="0" maximum="1"/>    
+      <attribute id="54" name="_room"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="53">    
+  <association id="56">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="54" name="_floor"/>      
-      <multiplicity id="55" minimum="0" maximum="1"/>    
+      <attribute id="57" name="_floor"/>      
+      <multiplicity id="58" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="56">    
+  <realization id="59">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="13"/>  
   </realization>  
-  <generalization id="57">    
+  <generalization id="60">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="16"/>  
   </generalization>  
-  <generalization id="58">    
+  <generalization id="61">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <association id="59">    
+  <association id="62">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="60" name="_obs"/>      
-      <multiplicity id="61" minimum="0" maximum="2147483647"/>    
+      <attribute id="63" name="_obs"/>      
+      <multiplicity id="64" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="62">    
+  <generalization id="65">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <nesting id="63">    
+  <nesting id="66">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="2"/>  
   </nesting>  
-  <association id="64">    
+  <association id="67">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="65" name="_locations"/>      
-      <multiplicity id="66" minimum="0" maximum="2147483647"/>    
+      <attribute id="68" name="_locations"/>      
+      <multiplicity id="69" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="67">    
+  <generalization id="70">    
     <end type="SOURCE" refId="15"/>    
     <end type="TARGET" refId="14"/>  
   </generalization>  
-  <association id="68">    
+  <association id="71">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="69" name="_cam"/>      
-      <multiplicity id="70" minimum="0" maximum="1"/>    
+      <attribute id="72" name="_cam"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  

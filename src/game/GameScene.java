@@ -17,7 +17,7 @@ public abstract class GameScene extends Subject implements IGameGraphic
 	protected GameObject	_floor = null;
 	
 	/**
-	 * Scene Node (every GameObject will be attached to it)
+	 * Scene Node (every GameObject composing the scene will be attached to it)
 	 */
 	protected Node _node = null;
 
